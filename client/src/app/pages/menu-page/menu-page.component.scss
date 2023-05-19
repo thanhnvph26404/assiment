@@ -1,0 +1,81 @@
+@import '../../../styles.scss';
+
+.wrapper{
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+
+
+    .intro{
+        max-width: 770px;
+        margin: 80px auto 32px;
+        gap: 1.2rem;
+        text-align: center;
+
+        h1{
+            font-size: 4.8rem;
+            line-height: 5.5rem;
+            color: $title-color;
+            font-family: title_font;
+            text-transform: capitalize;
+
+            span{
+                color: $primary-color;
+            
+            }
+        }
+
+        p{
+            color: #777E91;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 36px;
+            text-align: center;
+        }
+    }
+
+    .category{
+        margin: 0 auto 80px;
+        display: flex;
+        justify-content: space-between;
+        width: 672px;
+        height: 74px;
+        padding: 6px;
+        box-shadow: 0px 3px 9px rgba(1, 5, 20, 0.05);
+        border-radius: 8px;
+
+        .category-item{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            gap: 8px;
+            
+            padding: 0 15.5px;
+            text-align: center;
+
+            img{
+                width: 33px;
+                
+            }
+
+            h6{
+                font-size: 2rem;
+                line-height: 3rem;
+                color: #353945;                ;
+                font-weight: 400;
+            }
+            
+        }
+        .active{
+            >h6{
+                color: $text-white;
+            }
+            background-color: #43CB48;
+        }
+    }
+
+    
+}

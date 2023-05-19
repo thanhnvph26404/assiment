@@ -1,0 +1,64 @@
+@import '../../../styles.scss';
+
+.wrapper{
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 112px;
+    display: flex;
+    justify-content: space-between;
+    
+
+    .logo{
+        display: block;
+        height: 40px;
+        align-self: center;
+        margin-left: 72px;
+    }
+
+    .nav{
+        align-self: center;
+        display: flex;
+        align-items: flex-end;
+        height: 44px;
+        margin-right: 72px;
+        
+        
+        >li{
+            display: block;
+            line-height: 44px;
+            margin-left: 32px;
+            
+            
+            .link{
+                text-decoration: none;
+                display: block;
+                font-weight: 500;
+                
+                color: #777E91;
+                &:hover{
+                    color: $primary-color;
+                }
+            }
+        }
+        
+        .order{
+            
+            padding: 0px 20px;
+            background-color: $primary-color;
+            border-radius: 8px; 
+            &:hover{
+                opacity: .8;
+            }
+            >.link{
+                color: $text-white;
+                &:hover{
+                    color: $text-white;
+                    
+                    
+                }
+            }
+        }   
+        
+
+    }
+}
