@@ -1,0 +1,5 @@
+<p>upload works!</p>
+<form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+    <input type="file" formControlName="image" (change)="onHandleUpload($event)">
+    <button type="submit">submit</button>
+</form>
