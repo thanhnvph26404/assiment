@@ -1,7 +1,7 @@
 import Category from "../models/categories"
 
 
-export const create = async (req, res, next) => {
+export const create = async (req, res) => {
     try {
         const category = await Category.create(req.body)
         if (!category) {
