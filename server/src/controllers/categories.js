@@ -10,7 +10,8 @@ export const create = async (req, res, next) => {
             })
         }
         return res.status(201).json({
-            message: "Tạo thành công"
+            message: "Tạo thành công", 
+            category
         } )
     } catch (error) {
         return res.status(500).json({
@@ -33,6 +34,23 @@ export const update = async (req, res) => {
             data: category,
         });
     } catch (error) {
+        return res.status(500).json({
+            message: error,
+        });
+    }
+};
+
+export const getAll = async (req, res) => {
+    try {
+        const categories = await Category.find();
+        if (categories.length === 0) {
+            res.status(404).json({
+                message: "Không có danh mục nào",
+            });
+        }
+        return res.status(200).json(categories);
+    } catch (error) {
+        // Nếu có lỗi thì trả về 500 và lỗi
         return res.status(500).json({
             message: error,
         });
@@ -93,31 +111,25 @@ export const get = async (req, res) => {
         });
     }
 };
-export const remove = async (req, res) => {
+export const remove = async (req, res, next) => {
     try {
-        const id = req.params.id;
-        
-        const category = await Category.findByIdAndDelete(id);
-        
-        if (!category) {
-            
-            return res.status(404).json({
-                message: "Không tìm thấy sản phẩm",
-            });
-        }
-        if (!category.isDeleteable) {
-            return res.status(400).send({ message: 'Không thể xóa danh mục này' });
-        }
-        return res.status(200).json({
-            message: "Xóa danh mục thành công",
-            category
-        });
-    } catch (error) {
-        res.status(400).json({
-            message: "Xóa sản phẩm thất bại",
-            error: error.message,
-            
-        });
+      const categoryId = req.params.id;
+  
+      // Kiểm tra xem category có thể xóa hay không
+      const category = await Category.findById(categoryId);
+      if (!category) {
+        return res.status(404).json({ error: 'Category not found' });
+      }
+  
+      if (!category.isDeleteable) {
+        return res.status(403).json({ error: 'Category cannot be deleted' });
+      }
+  
+      // Xóa category
+      await Category.findOneAndDelete({ _id: categoryId });
+  
+      res.status(200).json({ message: 'Category deleted successfully' });
+    } catch (err) {
+      next(err);
     }
-
-}
+  };

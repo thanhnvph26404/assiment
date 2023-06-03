@@ -30,7 +30,7 @@ categorySchema.pre("findOneAndDelete", async function (next) {
         //kiểm tra xem câu lệnh truy vấn có chứa trường categoryId được cập nhật không, nếu có lấy giá trị của trường đó để cập nhật cho các sản phẩm có cùng categoryId.
         const categoryId = this.getQuery().$set?.categoryId;
         const update = {
-            categoryId: categoryId ?? "uncategorized",
+            categoryId: categoryId,
         };
         await Product.updateMany(
             { categoryId: filter._id }, // Tìm các sản phẩm cùng categoryId

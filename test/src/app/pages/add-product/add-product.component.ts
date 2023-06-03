@@ -13,7 +13,8 @@ export class AddProductComponent {
 
   }
 
-  fileImage!: File
+  img!: any
+
   productForm = this.formBuilder.group({
     name: [''],
     image: [''],
@@ -26,17 +27,21 @@ export class AddProductComponent {
 
   handleImageUpload(event: any) {
     
-    this.fileImage = event.target.files[0];
+    const file = event.target.files[0];
     
-    
-    
+    const reader = new FileReader();
+        reader.readAsDataURL(file);
+    reader.onloadend = () => {
+          this.img = reader.result
+          
+        }
     // this.productForm.get('productImage').setValue(file);
   }
 
   onSubmit() {
     const product:Product = {
     name: this.productForm.value.name || '',
-    image: this.fileImage || undefined,
+    image: this.img || undefined,
     price: this.productForm.value.price || 0,
     flavor: this.productForm.value.flavor || '',
     description: this.productForm.value.description || '',
